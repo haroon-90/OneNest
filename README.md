@@ -1,12 +1,75 @@
-# React + Vite
+# OneNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**OneNest** is an all-in-one digital hub built using **React** and **Tailwind CSS**, designed for productivity, fun, and smart utility. Whether you're a student, developer, or just someone who loves clean design and useful tools — OneNest has got you covered.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Mini Games**  
+  Enjoy quick games like **Tic Tac Toe**, **Card Clash**, **Roll Dice**, and **Flip Coin**.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Productivity Tools**  
+  Use essential utilities like **Calculator**, **Stopwatch**, and more.
+
+- **Media**  
+  Jam out with the built-in **Music Player**.
+
+- **AI Advice**  
+  Get helpful and intelligent suggestions powered by AI.
+
+- **Dark/Light Theme Support**  
+  Toggle themes across the app seamlessly using context-based theming.
+
+
+## Tech Stack
+
+- **React** — Frontend Library  
+- **Tailwind CSS** — Utility-first styling  
+- **Framer Motion** — Animations and effects  
+- **React Context API** — Global theming logic
+
+---
+
+## How to Visit this Site
+
+1. **Just click the link below or Visit:**  
+    [https://haroon-90.github.io/OneNest/](https://haroon-90.github.io/OneNest/)
+
+---
+---
+
+## How to Use
+
+1. **Clone the Repo:**
+   ```bash
+   git clone https://github.com/haroon-90/OneNest.git
+   cd onenest
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the App:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Toggle Theme:**
+   Use the theme button in the Header to switch between light and dark mode.
+
+---
+
+## Credits
+
+Created with ❤️ by **Haroon** | [Tech Dastak](mailto:techdastak2@gmail.com)  
+Built as part of a learning journey in full-stack web development.
+
+---
+
+## Support
+
+Facing an issue or have a suggestion?  
+Email: [techdastak2@gmail.com](mailto:techdastak2@gmail.com)
