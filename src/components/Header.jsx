@@ -11,14 +11,14 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
 
         <div className="flex items-center space-x-2 hover:scale-105 transition">
-          <img src={Logo} alt="OneNest Logo" className="h-12" />
+          <img src={Logo} alt="OneNest Logo" className="h-12 cursor-pointer" onClick={() => window.location.reload()} />
         </div>
 
         <nav className="hidden md:flex space-x-6">
-          <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Home</a>
-          <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Tools</a>
+          <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Your Mini App Universe</a>
+          {/* <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Tools</a>
           <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>About</a>
-          <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Contact</a>
+          <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Contact</a> */}
         </nav>
 
         <div className="hidden md:block">

@@ -67,3 +67,23 @@
 .animate-glow {
     animation: glow 1s ease-in-out infinite;
 }
+
+.loading-img {
+    background: linear-gradient(60deg,
+            #2a2a2a 30%,
+            #3c3c3c 50%,
+            #2a2a2a 70%);
+    background-size: 250% 100%;
+    animation: shimmer-dark 2s infinite;
+    border-radius: 10px;
+}
+
+@keyframes shimmer-dark {
+    0% {
+        background-position: -150% 0;
+    }
+
+    100% {
+        background-position: 150% 0;
+    }
+}

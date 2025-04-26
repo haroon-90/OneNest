@@ -16,6 +16,7 @@ import FlipCoinLOGO from "../assets/Logo/coin_logo.svg";
 import CalculatorLOGO from "../assets/Logo/calculator_logo.svg";
 import MusicPlayerLOGO from "../assets/Logo/music_logo.svg";
 import AiAdviceLOGO from "../assets/Logo/Ai_advice_logo.svg";
+import LOGO from "../assets/Logo/OneNest_logo.svg";
 
 const Main = () => {
   const [activeComponent, setActiveComponent] = useState("");
@@ -40,7 +41,7 @@ const Main = () => {
       case "aiadvice":
         return <AiAdvice />;
       default:
-        return;
+        return (<img src={LOGO} alt="OneNest Logo" className="h-[40vh] w-auto"></img>);
     }
   };
 
@@ -57,12 +58,12 @@ const Main = () => {
 
   return (
     <div className={`${theme === "dark" ? "bg-[#313234] text-white" : "bg-amber-100 text-black"}  min-h-[60vh] p-6 text-white flex flex-col items-center`}>
-      <div className="flex flex-wrap gap-3 mb-6">
+      <div className="flex flex-wrap gap-3 mb-6 justify-center">
         {buttons.map((btn) => (
           <div
             key={btn.value}
             onClick={() => setActiveComponent(btn.value)}
-            className={`p-4 rounded font-medium transition flex flex-col items-center gap-2 ${activeComponent === btn.value
+            className={`p-4 min-w-[10vw] rounded font-medium transition flex flex-col items-center gap-2 ${activeComponent === btn.value
                 ? "bg-[#25d366] text-black hover:bg-[#96fcda]"
                 : "bg-[#202021] hover:bg-[#3c3c44]"
               }`}
