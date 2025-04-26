@@ -35,7 +35,7 @@ const ImageGenerator = () => {
       setLoading(false);
     } catch (error) {
       console.error("Error during image generation:", error);
-      setError("Failed to generate image.");
+      setError("This feature is under Deveopment.");
       setLoading(false);
     }
   };
