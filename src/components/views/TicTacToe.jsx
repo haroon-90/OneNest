@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import './views.css'
+import { useTheme } from "../../context/ThemeContext";
+import './views.css';
 
 const TicTacToe = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXTurn, setIsXTurn] = useState(true);
   const winnerInfo = calculateWinner(board);
@@ -30,7 +34,7 @@ const TicTacToe = () => {
         animate={{ scale: 1 }}
         whileHover={{ scale: 1.05 }}
         className={`w-20 h-20 md:w-24 md:h-24 text-2xl md:text-3xl flex items-center justify-center border border-gray-600 rounded-md cursor-pointer transition duration-300
-          ${board[index] ? "bg-[#2A2B30]" : "bg-[#1E1F24] hover:bg-[#3a3b40]"}
+          ${board[index] ? (isDark ? "bg-[#2A2B30]" : "bg-gray-200") : (isDark ? "bg-[#1E1F24] hover:bg-[#3a3b40]" : "bg-gray-100 hover:bg-gray-300")}
           ${isWinningCell ? "animate-glow border-[#25d366] text-[#25d366]" : ""}
         `}
       >
@@ -40,11 +44,19 @@ const TicTacToe = () => {
   };
 
   return (
-    <div className="text-white p-6 max-w-sm mx-auto bg-[#1E1F24] rounded-xl shadow-lg">
+    <div
+      className={`p-6 max-w-sm mx-auto rounded-xl shadow-lg`}
+      style={{
+        backgroundColor: isDark ? "#1A1B1F" : "#FFFFFF",
+        color: isDark ? "#FFFFFF" : "#000000",
+      }}
+    >
       <h2 className="text-2xl font-bold text-center mb-4">Tic Tac Toe</h2>
+
       <div className="grid grid-cols-3 gap-2">
         {board.map((_, index) => renderCell(index))}
       </div>
+
       <div className="mt-4 text-center">
         {winnerInfo ? (
           <motion.p
@@ -56,10 +68,11 @@ const TicTacToe = () => {
             {winnerInfo.winner} wins!
           </motion.p>
         ) : board.every(Boolean) ? (
-          <p className="text-xl font-semibold mb-2 text-gray-300">It's a draw!</p>
+          <p className="text-xl font-semibold mb-2">It's a draw!</p>
         ) : (
-          <p className="text-lg text-gray-400 mb-2">Turn: {isXTurn ? "X" : "O"}</p>
+          <p className="text-lg mb-2">Turn: {isXTurn ? "X" : "O"}</p>
         )}
+
         <button
           onClick={resetGame}
           className="bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-2 px-6 rounded shadow-md transition-all duration-300"

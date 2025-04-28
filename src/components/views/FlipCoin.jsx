@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useTheme } from "../../context/ThemeContext"; // 👈 Import Theme
 
 const FlipCoin = () => {
+  const { theme } = useTheme(); // 👈 Access theme
+  const isDark = theme === "dark";
+
   const [side, setSide] = useState("coin");
   const [flipping, setFlipping] = useState(false);
 
@@ -16,12 +20,20 @@ const FlipCoin = () => {
   };
 
   return (
-    <div className="text-center text-white bg-[#313234] p-6 rounded-lg shadow-lg max-w-md mx-auto mt-5">
+    <div
+      className="text-center p-6 rounded-lg shadow-lg max-w-md mx-auto mt-5"
+      style={{
+        backgroundColor: isDark ? "#313234" : "#f2f2f2",
+        color: isDark ? "#ffffff" : "#000000",
+      }}
+    >
       <h2 className="text-2xl font-bold mb-4">🪙 Flip a Coin</h2>
 
       <div className="w-32 h-32 mx-auto mb-4">
         <div
-          className={`w-full h-full rounded-full flex items-center justify-center text-2xl font-semibold border-4 transition-transform duration-400 ease-in-out ${flipping ? "rotate-y-180 translate-y-[-10px]" : "" } ${side === "Heads" ? "bg-yellow-400 text-black" : "bg-gray-800 text-white"}`}
+          className={`w-full h-full rounded-full flex items-center justify-center text-2xl font-semibold border-4 transition-transform duration-400 ease-in-out ${
+            flipping ? "rotate-y-180 translate-y-[-10px]" : ""
+          } ${side === "Heads" ? "bg-yellow-400 text-black" : "bg-gray-800 text-white"}`}
         >
           {!flipping ? side : "🪙"}
         </div>

@@ -87,3 +87,7 @@
         background-position: 150% 0;
     }
 }
+
+.invert {
+    filter: invert(1) hue-rotate(180deg);
+}

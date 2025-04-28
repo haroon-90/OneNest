@@ -57,7 +57,7 @@ const Main = () => {
   ];
 
   return (
-    <div className={`${theme === "dark" ? "bg-[#313234] text-white" : "bg-amber-100 text-black"}  min-h-[60vh] p-6 text-white flex flex-col items-center`}>
+    <div className={`${theme === "dark" ? "bg-[#313234] text-white" : "bg-amber-100 text-black"}  min-h-[60vh] p-6 text-white flex flex-col items-center pb-20`}>
       <div className="flex flex-wrap gap-3 mb-6 justify-center">
         {buttons.map((btn) => (
           <div
@@ -65,10 +65,10 @@ const Main = () => {
             onClick={() => setActiveComponent(btn.value)}
             className={`p-4 min-w-[10vw] rounded font-medium transition flex flex-col items-center gap-2 ${activeComponent === btn.value
                 ? "bg-[#25d366] text-black hover:bg-[#96fcda]"
-                : "bg-[#202021] hover:bg-[#3c3c44]"
+                : theme === "dark" ? "bg-[#1E1F24] text-white hover:bg-[#3c3c44]" : "bg-white text-black hover:bg-[#caf9e9]"
               }`}
           >
-            <img src={btn.logo} alt={btn.label} className="h-20 w-20" />
+            <img src={btn.logo} alt={btn.label} className={`h-20 w-20 ${theme === "dark" ? "" : "invert"}`} />
             {btn.label}
           </div>
         ))}

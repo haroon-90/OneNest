@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import music_bg from "../../assets/Logo/music_bg.svg";
+import { useTheme } from "../../context/ThemeContext";
 import './views.css'
 
 const MusicPlayer = () => {
@@ -12,6 +13,7 @@ const MusicPlayer = () => {
   const audioPlayerRef = useRef(null);
   const [audioFileName, setAudioFileName] = useState("");
   const [isReady, setIsReady] = useState(false);
+  const { theme } = useTheme();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -95,7 +97,7 @@ const MusicPlayer = () => {
 
   return (
     <div
-      className={`${ isPlaying ? "bg" : ""} text-white bg-black p-6 rounded-4xl shadow-xl w-[70vw] mx-auto mt-10 flex flex-col items-center`}
+      className={`${ isPlaying ? "bg" : ""} ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-6 rounded-4xl shadow-xl w-[70vw] mx-auto mt-10 flex flex-col items-center`}
       style={{
         backgroundImage: `url(${music_bg})`,
         backgroundSize: "fit",
@@ -103,16 +105,16 @@ const MusicPlayer = () => {
       }
     }
     >
-      <h2 className="text-3xl bg-black w-[fit-content] font-semibold text-center mb-6 ">Music Player</h2>
+      <h2 className={`text-3xl ${theme === "dark" ? "bg-black" : "bg-white"} w-[fit-content] font-semibold text-center mb-6`}>Music Player</h2>
       <input
         type="file"
         accept="audio/*"
         onChange={handleFileChange}
-        className="block w-full text-sm text-white bg-black p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25d366]"
+        className={`block w-full text-sm ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25d366]`}
       />
       {audioFile ? (
         <div className="bg-transparent p-6 rounded-lg shadow-xl max-w-lg mx-auto">
-          <p className="text-center text-lg font-medium bg-black text-white mb-4">Now Playing: {audioFileName}</p>
+          <p className={`text-center text-lg font-medium ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} mb-4`}>Now Playing: {audioFileName}</p>
           <div className="flex items-center justify-center gap-6 mb-6">
             <button
               onClick={togglePlayPause}
@@ -141,7 +143,7 @@ const MusicPlayer = () => {
             </button>
           </div>
           <div className="w-full mb-6">
-            <div className="flex justify-between text-sm text-white bg-black mb-2">
+            <div className={`flex justify-between text-sm ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} mb-2`}>
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>

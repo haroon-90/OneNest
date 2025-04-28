@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { useTheme } from "../../context/ThemeContext";
 
 const ImageGenerator = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [prompt, setPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const generateImage = async (prompt) => {
-    const apiKey = "API_TOKEN";
     const modelName = "stabilityai/stable-diffusion-xl-base-1.0";
-    
+
     try {
       setLoading(true);
       const response = await fetch(
@@ -23,19 +26,19 @@ const ImageGenerator = () => {
           body: JSON.stringify({ inputs: prompt }),
         }
       );
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(`Image generation failed: ${errorData}`);
       }
-  
+
       const blob = await response.blob();
       const imageUrl = URL.createObjectURL(blob);
       setImageUrl(imageUrl);
       setLoading(false);
     } catch (error) {
       console.error("Error during image generation:", error);
-      setError("This feature is under Development.");
+      setError("This feature is under maintenance. Please try again later.");
       setLoading(false);
     }
   };
@@ -49,7 +52,11 @@ const ImageGenerator = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center bg-[#202021] text-white p-6 rounded-lg">
+    <div className="flex flex-col items-center justify-center text-white p-6 rounded-lg w-[70vw] min-w-md"
+      style={{
+        backgroundColor: isDark ? "#1A1B1F" : "#f2f2f2",
+        color: isDark ? "#ffffff" : "#000000",
+      }}>
       <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-center">
         SnapCraft
       </h1>
@@ -62,6 +69,10 @@ const ImageGenerator = () => {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           className="flex-1 border-1 border-[#25d366] rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#25d366]"
+          style={{
+            backgroundColor: isDark ? "#1A1B1F" : "#f2f2f2",
+            color: isDark ? "#ffffff" : "#000000",
+          }}
         />
         <button
           onClick={handleSubmit}
@@ -73,9 +84,9 @@ const ImageGenerator = () => {
 
       {loading && (
         <div className="text-center text-lg text-gray-300 mb-6">
-        <div className='loading-img w-[50vh] h-[50vh] rounded-lg shadow-lg mt-6 flex items-center justify-center'>
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#25d366]"></div>
-        </div>
+          <div className='loading-img w-[50vh] h-[50vh] rounded-lg shadow-lg mt-6 flex items-center justify-center'>
+            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#25d366]"></div>
+          </div>
         </div>
       )}
 
@@ -86,7 +97,7 @@ const ImageGenerator = () => {
       )}
 
       {imageUrl && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center mb-6">
           <img
             src={imageUrl}
             alt={prompt}

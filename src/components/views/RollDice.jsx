@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "../../context/ThemeContext";
+
 import Dice0 from "../../assets/Logo/Dice_0.svg";
 import Dice1 from "../../assets/Logo/Dice_1.svg";
 import Dice2 from "../../assets/Logo/Dice_2.svg";
@@ -11,6 +13,9 @@ import Dice6 from "../../assets/Logo/Dice_6.svg";
 const diceImages = [Dice0, Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
 
 const RollDice = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [diceValue, setDiceValue] = useState(0);
   const [rolling, setRolling] = useState(false);
 
@@ -30,14 +35,20 @@ const RollDice = () => {
   };
 
   return (
-    <div className="w-[50vw] h-auto text-white flex flex-col items-center p-6 bg-[#1E1F24] rounded-xl shadow-lg">
+    <div
+      className="w-[50vw] h-auto flex flex-col items-center p-6 rounded-xl shadow-lg"
+      style={{
+        backgroundColor: isDark ? "#1E1F24" : "#f9f9f9",
+        color: isDark ? "#ffffff" : "#000000",
+      }}
+    >
       <h2 className="text-2xl font-bold mb-6">Roll Dice</h2>
 
       <motion.img
-        key={diceValue} // triggers animation on change
+        key={diceValue}
         src={diceImages[diceValue]}
         alt={`Dice ${diceValue}`}
-        className="w-[15vw] h-[15vw] m-6"
+        className={`w-[15vw] h-[15vw] m-6 ${theme === "dark" ? "" : "invert"  }`}
         initial={{ rotate: 0, scale: 0.8 }}
         animate={{
           rotate: [0, 180, 270, 360],

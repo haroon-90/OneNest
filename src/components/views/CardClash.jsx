@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
 import backCard from "../../assets/images/back_card.png";
 
 import img1 from "../../assets/images/card1.jpg";
@@ -20,9 +21,12 @@ const shuffleCards = () => {
 };
 
 const CardClash = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
-  const [moves, setmoves] = useState(0);
+  const [moves, setMoves] = useState(0);
 
   useEffect(() => {
     setCards(shuffleCards());
@@ -33,21 +37,17 @@ const CardClash = () => {
       const [first, second] = flippedCards;
       if (cards[first].img === cards[second].img) {
         const newCards = cards.map((card, idx) =>
-          idx === first || idx === second
-            ? { ...card, matched: true }
-            : card
+          idx === first || idx === second ? { ...card, matched: true } : card
         );
         setCards(newCards);
-        setmoves(moves + 1);
+        setMoves((m) => m + 1);
       } else {
         setTimeout(() => {
           const newCards = cards.map((card, idx) =>
-            idx === first || idx === second
-              ? { ...card, flipped: false }
-              : card
+            idx === first || idx === second ? { ...card, flipped: false } : card
           );
           setCards(newCards);
-          setmoves(moves + 1);
+          setMoves((m) => m + 1);
         }, 500);
       }
       setFlippedCards([]);
@@ -66,14 +66,21 @@ const CardClash = () => {
   const resetGame = () => {
     setCards(shuffleCards());
     setFlippedCards([]);
-    setmoves(0);
+    setMoves(0);
   };
 
   return (
-    <div className="bg-[#3c3d3f] min-h-screen  p-6 rounded-lg shadow-lg">
+    <div
+      className="min-h-screen p-6 rounded-lg shadow-lg"
+      style={{
+        backgroundColor: isDark ? "#3c3d3f" : "#f3f3f3",
+        color: isDark ? "#ffffff" : "#000000",
+      }}
+    >
       <div className="flex items-center justify-center mt-4 mb-4">
-        <h1 className="text-3xl font-bold text-white">Card Clash</h1>
+        <h1 className="text-3xl font-bold">Card Clash</h1>
       </div>
+
       <div className="grid grid-cols-4 md:grid-cols-8 gap-4 max-w-4xl mx-auto mt-10 p-4">
         {cards.map((card, index) => (
           <div
@@ -84,24 +91,31 @@ const CardClash = () => {
             <img
               src={card.flipped || card.matched ? card.img : backCard}
               alt="card"
-              className={`w-full h-full object-cover rounded-lg shadow-md transition-transform duration-500 ${card.flipped ? 'rotate-y-180' : ''
-                }`}
+              className="w-full h-full object-cover rounded-lg shadow-md transition-transform duration-500"
               style={{
                 transformStyle: 'preserve-3d',
+                transform: card.flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
               }}
             />
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-between mt-6 bg-[#1A1B1F] p-4 rounded-xl shadow-lg">
+
+      <div
+        className="flex items-center justify-between mt-6 p-4 rounded-xl shadow-lg"
+        style={{
+          backgroundColor: isDark ? "#1A1B1F" : "#E5E7EB",
+        }}
+      >
         <div className="relative group">
-          <span className="text-white text-base sm:text-lg cursor-pointer">How to play?</span>
+          <span className="text-base sm:text-lg cursor-pointer">How to play?</span>
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-40 mb-2 w-48 bg-gray-800 text-white text-sm rounded-md p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Match all the pairs of cards in as few moves as possible. Click on a card to flip it, and click on another to find its match!
           </div>
         </div>
+
         <div className="flex items-center gap-4">
-          <span className="text-lg font-semibold border border-[#25d366] rounded-full px-5 py-2 text-white shadow-inner">
+          <span className="text-lg font-semibold border border-[#25d366] rounded-full px-5 py-2 shadow-inner">
             {moves} moves
           </span>
 
@@ -113,7 +127,6 @@ const CardClash = () => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };

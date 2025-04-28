@@ -28,7 +28,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className={`${theme === "dark" ? "bg-[#1E1F24] text-white" : "bg-amber-50 text-black"} shadow-md mt-20 py-5`}>
+    <footer className={`${theme === "dark" ? "bg-[#1E1F24] text-white" : "bg-amber-50 text-black"} shadow-md py-5`}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 

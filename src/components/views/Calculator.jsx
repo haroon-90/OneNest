@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { evaluate } from "mathjs";  // Import evaluate from mathjs
+import { evaluate } from "mathjs";
+import { useTheme } from "../../context/ThemeContext";
 
 const Calculator = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
 
@@ -16,15 +20,22 @@ const Calculator = () => {
 
   const handleCalculate = () => {
     try {
-      // Replace eval with mathjs' evaluate function
-      setResult(evaluate(input));  
+      setResult(evaluate(input));
     } catch (error) {
       setResult("Error");
     }
   };
 
+  const buttonClasses = "text-2xl font-semibold py-4 rounded-2xl transition";
+
   return (
-    <div className="bg-[#1A1B1F] p-6 rounded-lg w-80 mx-auto text-white">
+    <div
+      className="p-6 rounded-lg w-80 mx-auto"
+      style={{
+        backgroundColor: isDark ? "#1A1B1F" : "#f2f2f2",
+        color: isDark ? "#ffffff" : "#000000",
+      }}
+    >
       <h2 className="text-center text-2xl font-bold mb-4">Calculator</h2>
 
       <div className="mb-4">
@@ -32,10 +43,20 @@ const Calculator = () => {
           type="text"
           value={input}
           readOnly
-          className="w-full p-4 text-center text-xl bg-[#333] text-white rounded-2xl mb-2"
+          className="w-full p-4 text-center text-xl rounded-2xl mb-2"
+          style={{
+            backgroundColor: isDark ? "#333" : "#e0e0e0",
+            color: isDark ? "#ffffff" : "#000000",
+          }}
         />
         {result && (
-          <div className="text-center text-xl font-semibold bg-[#333] text-[#00FFAB] rounded-2xl p-4">
+          <div
+            className="text-center text-xl font-semibold rounded-2xl p-4"
+            style={{
+              backgroundColor: isDark ? "#333" : "#e0e0e0",
+              color: isDark ? "white" : "black",
+            }}
+          >
             = {result}
           </div>
         )}
@@ -46,7 +67,11 @@ const Calculator = () => {
           <button
             key={idx}
             onClick={() => handleClick(button)}
-            className="bg-[#2F2F34] hover:bg-[#3c3c44] text-2xl font-semibold py-4 rounded-2xl transition"
+            className={`${buttonClasses}`}
+            style={{
+              backgroundColor: isDark ? "#2F2F34" : "#d6d6d6",
+              color: isDark ? "#ffffff" : "#000000",
+            }}
           >
             {button}
           </button>
@@ -55,7 +80,11 @@ const Calculator = () => {
           <button
             key={idx}
             onClick={() => handleClick(button)}
-            className="bg-[#2F2F34] hover:bg-[#3c3c44] text-2xl font-semibold py-4 rounded-2xl transition"
+            className={`${buttonClasses}`}
+            style={{
+              backgroundColor: isDark ? "#2F2F34" : "#d6d6d6",
+              color: isDark ? "#ffffff" : "#000000",
+            }}
           >
             {button}
           </button>
@@ -64,7 +93,11 @@ const Calculator = () => {
           <button
             key={idx}
             onClick={() => handleClick(button)}
-            className="bg-[#2F2F34] hover:bg-[#3c3c44] text-2xl font-semibold py-4 rounded-2xl transition"
+            className={`${buttonClasses}`}
+            style={{
+              backgroundColor: isDark ? "#2F2F34" : "#d6d6d6",
+              color: isDark ? "#ffffff" : "#000000",
+            }}
           >
             {button}
           </button>
@@ -72,10 +105,25 @@ const Calculator = () => {
         {["C", "0", "=", "+"].map((button, idx) => (
           <button
             key={idx}
-            onClick={button === "C" ? handleClear : button === "=" ? handleCalculate : () => handleClick(button)}
-            className={`bg-[#2F2F34] hover:bg-[#3c3c44] text-2xl font-semibold py-4 rounded-2xl transition ${button === "C" ? "bg-red-500" : ""
-              }${button === "=" ? "bg-amber-500" : ""
-              }`}
+            onClick={
+              button === "C"
+                ? handleClear
+                : button === "="
+                ? handleCalculate
+                : () => handleClick(button)
+            }
+            className={`${buttonClasses}`}
+            style={{
+              backgroundColor:
+                button === "C"
+                  ? "#ff4c4c"
+                  : button === "="
+                  ? "#ffc107"
+                  : isDark
+                  ? "#2F2F34"
+                  : "#d6d6d6",
+              color: button === "C" || button === "=" ? "#000000" : isDark ? "#ffffff" : "#000000",
+            }}
           >
             {button}
           </button>

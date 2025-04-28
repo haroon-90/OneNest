@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useTheme } from "../../context/ThemeContext";
 
 const StopWatch = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
@@ -40,7 +44,13 @@ const StopWatch = () => {
   };
 
   return (
-    <div className="bg-[#1A1B1F] p-6 rounded-lg w-80 mx-auto text-white">
+    <div
+      className="p-6 rounded-lg w-80 mx-auto"
+      style={{
+        backgroundColor: isDark ? "#1A1B1F" : "#f9f9f9",
+        color: isDark ? "#ffffff" : "#000000",
+      }}
+    >
       <h2 className="text-center text-2xl font-bold mb-4">⏱ Stop Watch</h2>
 
       <div className="mb-6 text-center text-3xl font-semibold">
@@ -54,6 +64,7 @@ const StopWatch = () => {
         >
           {isRunning ? "Stop" : "Start"}
         </button>
+
         <button
           onClick={handleReset}
           className="bg-[#FF6347] hover:bg-[#FF4C36] text-black font-semibold py-3 px-6 rounded-lg transition"
