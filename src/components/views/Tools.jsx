@@ -17,7 +17,7 @@ const Tools = () => {
     { name: "Roll Dice", desc: "Roll a random dice and try your luck." },
     { name: "Flip Coin", desc: "Heads or Tails? Let’s decide!" },
     { name: "Music Player", desc: "Play your favorite tracks." },
-    { name: "AI Advice", desc: "Get smart advice from our AI." },
+    { name: "SnapCraft", desc: "Generate images from text using SnapCraft." },
   ];
 
   return (
