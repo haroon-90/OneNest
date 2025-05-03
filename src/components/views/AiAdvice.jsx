@@ -38,7 +38,7 @@ const ImageGenerator = () => {
       setLoading(false);
     } catch (error) {
       console.error("Error during image generation:", error);
-      setError("this feature is not available right now, please try again later.");
+      setError("This feature is not available yet. Please try again later.");
       setLoading(false);
     }
   };

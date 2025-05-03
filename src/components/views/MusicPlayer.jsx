@@ -80,30 +80,31 @@ const MusicPlayer = () => {
     }
   };
 
-  useEffect(() => {
-    if (audioPlayerRef.current) {
-      audioPlayerRef.current.addEventListener("ended", () => {
-        setIsPlaying(false);
-        setCurrentTime(0);
-      });
-    }
-  }, [audioFile]);
-
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  useEffect(() => {
+    if (audioPlayerRef.current) {
+      audioPlayerRef.current.addEventListener("ended", () => {
+        setIsPlaying(false);
+        setCurrentTime(0);
+        audioPlayerRef.current.play(); // Replay the song
+        setIsPlaying(true);
+      });
+    }
+  }, [audioFile]);
+
   return (
     <div
-      className={`${ isPlaying ? "bg" : ""} ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-6 rounded-4xl shadow-xl w-[70vw] mx-auto mt-10 flex flex-col items-center`}
+      className={`${isPlaying ? "bg" : ""} ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-6 rounded-4xl shadow-xl w-[70vw] mx-auto mt-10 flex flex-col items-center`}
       style={{
         backgroundImage: `url(${music_bg})`,
         backgroundSize: "fit",
         backgroundPosition: "center",
-      }
-    }
+      }}
     >
       <h2 className={`text-3xl ${theme === "dark" ? "bg-black" : "bg-white"} w-[fit-content] font-semibold text-center mb-6`}>Music Player</h2>
       <input
@@ -116,30 +117,28 @@ const MusicPlayer = () => {
         <div className="bg-transparent p-6 rounded-lg shadow-xl max-w-lg mx-auto">
           <p className={`text-center text-lg font-medium ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} mb-4`}>Now Playing: {audioFileName}</p>
           <div className="flex items-center justify-center gap-6 mb-6">
-            <button
-              onClick={togglePlayPause}
-              disabled={!isReady}
-              className={`bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-3 px-6 rounded-full shadow-md transition-all duration-300 ${
-                !isReady ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {isPlaying ? "Pause" : "Play"}
-            </button>
-          </div>
-          <div className="flex items-center justify-center gap-8 mb-4">
+
             <button
               onClick={skipBackward}
               title="Backward 10s"
               className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-6 rounded-full shadow-md"
             >
-              &lt;&lt;
+              ⏴⏴
+            </button>
+            <button
+              onClick={togglePlayPause}
+              disabled={!isReady}
+              className={`bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-3 px-6 rounded-full shadow-md transition-all duration-300 ${!isReady ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+            >
+              {isPlaying ? "||" : "⏵"}
             </button>
             <button
               onClick={skipForward}
               title="Forward 10s"
               className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-6 rounded-full shadow-md"
             >
-              &gt;&gt;
+              ⏵⏵
             </button>
           </div>
           <div className="w-full mb-6">
