@@ -11,6 +11,7 @@ const ImageGenerator = () => {
   const [error, setError] = useState(null);
 
   const generateImage = async (prompt) => {
+    const apiKey = "API_KEY";
     const modelName = "stabilityai/stable-diffusion-xl-base-1.0";
 
     try {
@@ -38,7 +39,7 @@ const ImageGenerator = () => {
       setLoading(false);
     } catch (error) {
       console.error("Error during image generation:", error);
-      setError("This feature is not available yet. Please try again later.");
+      setError("This feature is not available right now. Please try again later.");
       setLoading(false);
     }
   };

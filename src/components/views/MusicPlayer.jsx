@@ -99,36 +99,35 @@ const MusicPlayer = () => {
 
   return (
     <div
-      className={`${isPlaying ? "bg" : ""} ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-6 rounded-4xl shadow-xl w-[70vw] mx-auto mt-10 flex flex-col items-center`}
+      className={`${isPlaying ? "bg" : ""} ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-4 rounded-4xl shadow-xl w-[90vw] md:w-[70vw] mx-auto mt-10 flex flex-col items-center`}
       style={{
         backgroundImage: `url(${music_bg})`,
         backgroundSize: "fit",
         backgroundPosition: "center",
       }}
     >
-      <h2 className={`text-3xl ${theme === "dark" ? "bg-black" : "bg-white"} w-[fit-content] font-semibold text-center mb-6`}>Music Player</h2>
+      <h2 className={`text-2xl md:text-3xl ${theme === "dark" ? "bg-black" : "bg-white"} w-[fit-content] font-semibold text-center mb-4 md:mb-6`}>Music Player</h2>
       <input
         type="file"
         accept="audio/*"
         onChange={handleFileChange}
-        className={`block w-full text-sm ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-3 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25d366]`}
+        className={`block w-auto text-sm ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} p-2 md:p-3 mb-4 md:mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25d366]`}
       />
       {audioFile ? (
-        <div className="bg-transparent p-6 rounded-lg shadow-xl max-w-lg mx-auto">
+        <div className="bg-transparent p-4 rounded-lg max-w-full md:max-w-lg mx-auto">
           <p className={`text-center text-lg font-medium ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} mb-4`}>Now Playing: {audioFileName}</p>
-          <div className="flex items-center justify-center gap-6 mb-6">
-
+          <div className="flex items-center justify-center gap-4 mb-4 md:gap-6 md:mb-6">
             <button
               onClick={skipBackward}
               title="Backward 10s"
-              className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-6 rounded-full shadow-md"
+              className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-4 md:px-6 rounded-full shadow-md"
             >
               ⏴⏴
             </button>
             <button
               onClick={togglePlayPause}
               disabled={!isReady}
-              className={`bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-3 px-6 rounded-full shadow-md transition-all duration-300 ${!isReady ? "opacity-50 cursor-not-allowed" : ""
+              className={`bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-2 md:py-3 px-4 md:px-6 rounded-full shadow-md transition-all duration-300 ${!isReady ? "opacity-50 cursor-not-allowed" : ""
                 }`}
             >
               {isPlaying ? "||" : "⏵"}
@@ -136,12 +135,12 @@ const MusicPlayer = () => {
             <button
               onClick={skipForward}
               title="Forward 10s"
-              className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-6 rounded-full shadow-md"
+              className="bg-[#25d366] hover:bg-[#388e3c] text-black font-bold py-2 px-4 md:px-6 rounded-full shadow-md"
             >
               ⏵⏵
             </button>
           </div>
-          <div className="w-full mb-6">
+          <div className="w-full mb-4 md:mb-6">
             <div className={`flex justify-between text-sm ${theme === "dark" ? "text-white bg-black" : "text-black bg-white"} mb-2`}>
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
@@ -155,10 +154,10 @@ const MusicPlayer = () => {
               className="w-full h-2 bg-[#333] rounded-lg"
             />
           </div>
-          <div className="flex items-center justify-between gap-4 mb-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4 md:mb-6">
             <button
               onClick={toggleMute}
-              className="bg-[#FF0000] hover:bg-[#D70000] text-black font-bold py-2 px-6 rounded-full shadow-md"
+              className="bg-[#FF0000] hover:bg-[#D70000] text-black font-bold py-2 px-4 md:px-6 rounded-full shadow-md"
             >
               {isMuted ? "Unmute" : "Mute"}
             </button>
@@ -169,12 +168,12 @@ const MusicPlayer = () => {
               step="0.01"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-32 h-2 bg-[#333] rounded-lg"
+              className="w-1/2 md:w-32 h-2 bg-[#333] rounded-lg"
             />
           </div>
         </div>
       ) : (
-        <p className="text-center text-white mt-6">Please select a music file to play.</p>
+        <p className="text-center text-white mt-4 md:mt-6">Please select a music file to play.</p>
       )}
     </div>
   );
