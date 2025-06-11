@@ -23,7 +23,7 @@ const FlipCoin = () => {
     <div
       className="text-center p-6 rounded-lg shadow-lg max-w-md mx-auto mt-5"
       style={{
-        backgroundColor: isDark ? "#313234" : "#f2f2f2",
+        backgroundColor: isDark ? "#1E1F24" : "#f9f9f9",
         color: isDark ? "#ffffff" : "#000000",
       }}
     >

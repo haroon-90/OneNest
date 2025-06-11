@@ -1,6 +1,7 @@
 // File: src/components/Header.jsx
 import React from "react";
 import Logo from "../assets/Logo/OneNest_logo.svg";
+import { FaSun, FaMoon} from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
 const Header = () => {
@@ -21,12 +22,12 @@ const Header = () => {
           <a href="#" className={`${theme === 'dark' ? "text-white" : "text-black"} hover:text-[#25d366] transition`}>Contact</a> */}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="block">
           <button
             onClick={toggleTheme}
-            className="bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-2 px-4 rounded transition"
+            className="bg-[#25d366] hover:bg-[#2dfcb4] text-black font-bold py-2 px-4 rounded-full transition"
           >
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+            {theme === "dark" ? <FaSun/> : <FaMoon color="white"/>}
           </button>
         </div>
       </div>

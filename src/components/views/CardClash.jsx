@@ -71,21 +71,23 @@ const CardClash = () => {
 
   return (
     <div
-      className="min-h-screen p-6 rounded-lg shadow-lg"
+      className="min-h-screen p-4 sm:p-6 rounded-lg shadow-lg"
       style={{
         backgroundColor: isDark ? "#3c3d3f" : "#f3f3f3",
         color: isDark ? "#ffffff" : "#000000",
       }}
     >
-      <div className="flex items-center justify-center mt-4 mb-4">
-        <h1 className="text-3xl font-bold">Card Clash</h1>
+      {/* Title */}
+      <div className="flex items-center justify-center mt-4 mb-4 text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Card Clash</h1>
       </div>
 
-      <div className="grid grid-cols-4 md:grid-cols-8 gap-4 max-w-4xl mx-auto mt-10 p-4">
+      {/* Cards Container */}
+      <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto mt-6 p-4">
         {cards.map((card, index) => (
           <div
             key={card.id}
-            className="w-24 h-32 cursor-pointer"
+            className="w-[calc(25%-1rem)] aspect-[3/4] cursor-pointer"
             onClick={() => handleCardClick(index)}
           >
             <img
@@ -101,21 +103,25 @@ const CardClash = () => {
         ))}
       </div>
 
+
+      {/* Footer Section */}
       <div
-        className="flex items-center justify-between mt-6 p-4 rounded-xl shadow-lg"
+        className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 p-4 rounded-xl shadow-lg"
         style={{
           backgroundColor: isDark ? "#1A1B1F" : "#E5E7EB",
         }}
       >
-        <div className="relative group">
+        {/* Tooltip */}
+        <div className="relative group text-center sm:text-left">
           <span className="text-base sm:text-lg cursor-pointer">How to play?</span>
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-40 mb-2 w-48 bg-gray-800 text-white text-sm rounded-md p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-full left-1/2 sm:left-0 transform -translate-x-1/2 sm:translate-x-0 translate-y-40 mb-2 w-56 sm:w-64 bg-gray-800 text-white text-sm rounded-md p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
             Match all the pairs of cards in as few moves as possible. Click on a card to flip it, and click on another to find its match!
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <span className="text-lg font-semibold border border-[#25d366] rounded-full px-5 py-2 shadow-inner">
+        {/* Moves + Reset */}
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <span className="text-base sm:text-lg font-semibold border border-[#25d366] rounded-full px-5 py-2 shadow-inner text-center">
             {moves} moves
           </span>
 
@@ -128,6 +134,7 @@ const CardClash = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
