@@ -36,7 +36,7 @@ const ImageGenerator = () => {
   // };
 
   const generateImage = async (prompt) => {
-    const apiKey = "API";
+    const apiKey = process.env.HUGGING_FACE_API;
     const modelName = "stabilityai/stable-diffusion-xl-base-1.0";
 
     try {

@@ -10,6 +10,7 @@ import MusicPlayer from "./views/MusicPlayer";
 import MusicPlayer2 from "./views/MusicPlayer2";
 import MusicPlayer3 from "./views/MusicPlayer3";
 import SnapCraft from "./views/SnapCraft";
+import WordGuess from "./views/WordGuess";
 import TicTacToeLOGO from "../assets/Logo/Tic_Tac_Toe_logo.svg";
 import CardClashLOGO from "../assets/Logo/Card_Clash_logo.svg";
 import StopWatchLOGO from "../assets/Logo/StopWatch_logo.svg";
@@ -40,8 +41,8 @@ const Main = () => {
         return <Calculator />;
       case "musicplayer":
         return <MusicPlayer3  />;
-      case "aiadvice":
-        return <SnapCraft />;
+      case "wordguess":
+        return <WordGuess />;
       default:
         return (<img src={LOGO} alt="OneNest Logo" className="h-[40vh] w-auto"></img>);
     }
@@ -55,7 +56,7 @@ const Main = () => {
     { label: "Flip Coin", value: "flipcoin", logo: FlipCoinLOGO },
     { label: "Calculator", value: "calculator", logo: CalculatorLOGO },
     { label: "Music Player", value: "musicplayer", logo: MusicPlayerLOGO },
-    { label: "SnapCraft", value: "aiadvice", logo: AiAdviceLOGO },
+    { label: "WordGuess", value: "wordguess", logo: AiAdviceLOGO },
   ];
 
   return (
