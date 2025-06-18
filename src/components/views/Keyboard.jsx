@@ -55,7 +55,7 @@ const Keyboard = ({ onKeyPress }) => {
                 color: isDark ? "#fff" : "#000"
             }}
         >
-            <p>Pressed key: <span className="font-mono">{pressedKey || "None"}</span></p>
+            <p className="hidden md:inline">Pressed key: <span className="font-mono">{pressedKey || "None"}</span></p>
 
             {keys.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex gap-1">
