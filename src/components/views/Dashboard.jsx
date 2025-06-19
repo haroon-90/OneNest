@@ -21,7 +21,7 @@ const Dashboard = () => {
           style={{ backgroundColor: cardBgColor }}
         >          <h2 className="text-xl font-semibold mb-2">🧠 Logic Games</h2>
           <p className={`text-sm ${textGray}`}>
-            Challenge your brain with TicTacToe, CardClash and more.
+            Challenge your brain with TicTacToe, CardClash, Color Memory and Word Guess.
           </p>
         </div>
 

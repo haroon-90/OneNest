@@ -12,12 +12,12 @@ const Tools = () => {
 
   const tools = [
     { name: "Tic Tac Toe", desc: "Best two player mind game." },
-    { name: "Calculator", desc: "Basic math operations at your fingertips." },
+    { name: "Color Memory", desc: "Color memory game to sharpen memory" },
     { name: "Stopwatch", desc: "Track your time with ease." },
     { name: "Roll Dice", desc: "Roll a random dice and try your luck." },
     { name: "Flip Coin", desc: "Heads or Tails? Let’s decide!" },
     { name: "Music Player", desc: "Play your favorite tracks." },
-    { name: "SnapCraft", desc: "Generate images from text using SnapCraft." },
+    { name: "WordGuess", desc: "Guess the word by hints and have fun" },
   ];
 
   return (

@@ -6,6 +6,7 @@ import StopWatch from "./views/StopWatch";
 import RollDice from "./views/RollDice";
 import FlipCoin from "./views/FlipCoin";
 import Calculator from "./views/Calculator";
+import ColorGuess from "./views/ColorGuess";
 import MusicPlayer from "./views/MusicPlayer";
 import MusicPlayer2 from "./views/MusicPlayer2";
 import MusicPlayer3 from "./views/MusicPlayer3";
@@ -37,8 +38,8 @@ const Main = () => {
         return <RollDice />;
       case "flipcoin":
         return <FlipCoin />;
-      case "calculator":
-        return <Calculator />;
+      case "colorguess":
+        return <ColorGuess />;
       case "musicplayer":
         return <MusicPlayer3  />;
       case "wordguess":
@@ -54,7 +55,7 @@ const Main = () => {
     { label: "Stop Watch", value: "stopwatch", logo: StopWatchLOGO },
     { label: "Roll Dice", value: "rolldice", logo: RollDiceLOGO },
     { label: "Flip Coin", value: "flipcoin", logo: FlipCoinLOGO },
-    { label: "Calculator", value: "calculator", logo: CalculatorLOGO },
+    { label: "ColorGuess", value: "colorguess", logo: CalculatorLOGO },
     { label: "Music Player", value: "musicplayer", logo: MusicPlayerLOGO },
     { label: "WordGuess", value: "wordguess", logo: AiAdviceLOGO },
   ];

@@ -30,7 +30,7 @@ const About = () => {
         <div className={`p-5 rounded-lg hover:shadow-xl transition ${shadowColor}`} style={{ backgroundColor: cardBgColor }}>
           <h2 className="text-xl font-semibold mb-2">🛠 What We Offer</h2>
           <p className={`${textGray}`}>
-            From calculators to fun games and AI-powered SnapCraft, OneNest offers a versatile set of tools under one clean UI.
+            From Word Guess to fun games and Color Guess, OneNest offers a versatile set of tools under one clean UI.
           </p>
         </div>
       </div>
